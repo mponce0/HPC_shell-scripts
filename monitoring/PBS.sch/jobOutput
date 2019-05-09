@@ -1,0 +1,21 @@
+#!/bin/bash
+#
+#  This script allows users to display on realtime the output of a given job,
+#  specified by the jobID.
+#
+#  USAGE:  jobOutput JOBID
+#
+# Feb. 2015 --[:mponce]
+
+
+if [[ $# -eq 1 ]]; then
+   for i in `checkjob $1 | grep gpc | awk -F -ib '{print $1}'`; do
+       #ssh $i -t 'cat /var/spool/torque/spool/$PBS_JOBID.gpc-sched-ib0.OU';
+       ssh $i -t 'cat /var/spool/torque/spool/*.OU';
+   done;
+   if [ "$i" = "" ]; then
+      echo "Job not running!"
+   fi;
+else
+    echo "Please indicate jobId";
+fi

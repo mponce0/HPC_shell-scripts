@@ -1,0 +1,46 @@
+#!/bin/bash
+#
+#  This script allows users to display the submission script used when submitting a given job,
+#  specified by the jobID or jobNAME.
+#
+#  USAGE:  jobscript JOBID||JOBNAME
+#
+# Feb. 2015 --[:mponce]
+
+
+#checkjob -v $1 | grep "Submit Args" | awk '{print $NF}'
+#qstat -f $1 | grep submit_args | awk '{print $NF}'
+
+
+if [[ $# -eq 1 ]]; then
+   for j in `qstat -a | grep -w $1 | awk '{print $1}'`; do
+       echo $j;
+       if [ "$j" != "" ]; then
+          #echo $j;
+          for i in `qstat -f $j | grep WORKDIR | awk -F = {'print $2'} | awk -F , '{print $1}'`; do
+              if [ "$i" = "" ]; then
+                 echo $i
+                 echo "Job NOT found"
+              else
+                  for k in `qstat -f $j | grep submit_args | awk '{print $NF}'`; do
+                      echo "JOB: "$1,$j;
+                      echo "JOB dir:"$i;
+                      echo "Submission script located at: "$i/$k;
+                      echo "----------------------------------------------------------"
+                      more $i/$k;
+                      echo "----------------------------------------------------------"
+                  done;
+              fi
+          done;
+        else
+          echo "what happened?";
+          echo $i,$j;
+        fi;
+    done;
+#    if [ "$j" = ""]; then
+#       echo "JobID or JobNAME NOT found!";
+#    fi;
+else
+    echo "Please indicate jobId or jobName";
+fi
+

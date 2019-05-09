@@ -1,0 +1,23 @@
+#!/bin/bash
+#
+#  This script allows users to connect to the head-node of a given job,
+#  specified by the jobID.
+#
+#  USAGE:  jobssh JOBID
+#
+# Feb. 2015 --[:mponce]
+
+
+if [[ $# -eq 1 ]]; then
+   listN=$(checkjob -v $1 | grep "Task Distribution:" | awk -F : '{print $2}' | awk -F -ib0 '{print $1}');
+   #for i in `checkjob $1 | grep gpc | awk -F -ib '{print $1}'`; do
+   for i in $listN; do
+       echo $i;
+       ssh $i;
+   done;
+   if [ "$i" = "" ]; then
+      echo "Job not running!"
+   fi;
+else
+    echo "Please indicate jobId";
+fi
