@@ -1,7 +1,7 @@
 # HPC_shell-scripts
 
 # Set of shell scripts developed to monitor jobs in HPC clusters.
-# Based on HPC system from SciNet/UofT (www.scinet.utoronto.ca)
+# Based on HPC systems from SciNet/UofT (www.scinet.utoronto.ca)
 
 Two main categories:
 
