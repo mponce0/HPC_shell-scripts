@@ -1,0 +1,47 @@
+#!/bin/bash
+#PBS -l walltime=72:00:00
+#PBS -q archive
+#PBS -N htar_create_tarball_in_hpss
+#PBS -j oe
+#PBS -m e
+ 
+########################################################
+# Submission script to transfer data to the HPSS tape-archival system @ the GPC Cluster
+# Based on examples from
+#       https://oldwiki.scinet.utoronto.ca/wiki/index.php/HPSS#HTAR
+#
+# Marcelo Ponce
+########################################################
+
+
+echo "Creating a htar of finished-job1/ directory tree into HPSS"
+ 
+trap "echo 'Job script not completed';exit 129" TERM INT
+# Note that your initial directory in HPSS will be $ARCHIVE
+ 
+DEST=$ARCHIVE/HR_90-m90_?.tar
+ 
+# htar WILL overwrite an existing file with the same name so check beforehand.
+ 
+hsi ls $DEST &> /dev/null
+status=$?
+ 
+if [ $status == 0 ]; then   
+    echo 'File $DEST already exists. Nothing has been done'
+    exit 1
+fi
+ 
+cd $SCRATCH/tilted
+#htar -cpf $ARCHIVE/HR_90-m90_a.tar  HR_90-m90_a.tar
+put HR_90-m90_?.tar
+status=$?
+ 
+trap - TERM INT
+ 
+if [ ! $status == 0 ]; then
+   echo 'HTAR returned non-zero code.'
+   /scinet/gpc/bin/exit2msg $status
+   exit $status
+else
+   echo 'TRANSFER SUCCESSFUL'
+fi
