@@ -1,0 +1,14 @@
+#!/bin/bash
+#AB/Torque submission script for SciNet GPC cluster
+#
+#PBS -l nodes=16:ppn=8,walltime=48:00:00
+#PBS -N name.of.your.job
+#PBS -M YOURemail@here.com
+
+# DIRECTORY TO RUN - $PBS_O_WORKDIR is directory job was submitted from
+cd $PBS_O_WORKDIR
+
+# EXECUTION COMMAND; -np = nodes*ppn
+mpirun -np 128 -hostfile $PBS_NODEFILE ./myPROG parameter.file >& output.log
+
+
