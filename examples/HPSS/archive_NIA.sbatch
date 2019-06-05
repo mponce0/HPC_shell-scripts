@@ -10,6 +10,11 @@
 # Based on examples from
 #	https://docs.scinet.utoronto.ca/index.php/HPSS#Scripted_File_Transfers
 #
+#
+# eg.
+#	sbatch archive_NIA.sbatch myDIRtoARCHIVE SUBDIRinARCHIVE
+#
+#
 # Marcelo Ponce
 ########################################################
 
@@ -17,17 +22,25 @@ echo "Creating a htar of $TARGET directory tree into HPSS"
  
 trap "echo 'Job script not completed';exit 129" TERM INT
 # Note that your initial directory in HPSS will be $ARCHIVE
-ARCHIVE=/archive/s/scinet/mponce
- 
-#SOURCE=S_1ms1ms_100kms-a
-#SOURCE=tilted
-SOURCE=tiltedARB
-DEST=$ARCHIVE/${SOURCE}.tar
+ARCHIVE=/archive/GroupInitial/YOURGROUP/YOURUSERNAME
 
-echo hello world!!! $ARCHIVE !!!
-  
-# htar WILL overwrite an existing file with the same name so check beforehand.
- 
+# indicate the direftory you want to archive as the first argument to the script 
+SOURCE=$1
+## OR feel the specific value here...
+## SOURCE=mySIM
+
+# use a second argument if you want to store the tarball file in a subdir
+SUBDIR=$2
+
+DEST=$ARCHIVE/$SUBDIR/${SOURCE}.tar
+
+##
+echo hello world!!!
+echo Archiving $1 into $ARCHIVE using subdir --$SUBDIR-- ==> in $DEST!!!
+##
+
+
+# htar WILL overwrite an existing file with the same name so check beforehand 
 hsi ls $DEST &> /dev/null
 status=$?
  
