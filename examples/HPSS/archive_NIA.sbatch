@@ -24,7 +24,7 @@ trap "echo 'Job script not completed';exit 129" TERM INT
 # Note that your initial directory in HPSS will be $ARCHIVE
 ARCHIVE=/archive/GroupInitial/YOURGROUP/YOURUSERNAME
 
-# indicate the direftory you want to archive as the first argument to the script 
+# indicate the directory you want to archive as the first argument to the script 
 SOURCE=$1
 ## OR feel the specific value here...
 ## SOURCE=mySIM
