@@ -5,7 +5,7 @@
 #
 #  USAGE:  jobscript JOBID||JOBNAME
 #
-# Feb. 2015 --[:mponce]
+# Feb. 2015 --[:M.Ponce]
 
 
 #checkjob -v $1 | grep "Submit Args" | awk '{print $NF}'

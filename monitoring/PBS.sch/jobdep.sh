@@ -3,7 +3,7 @@
 #
 #  USAGE:  jobtree JOBID
 #
-# Mar. 2015 --[:mponce]
+# Mar. 2015 --[:M.Ponce]
 
 if [[ $# -eq 2 ]]; then
    level=$2;

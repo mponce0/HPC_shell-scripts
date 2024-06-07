@@ -4,7 +4,7 @@
 #SBATCH -p archivelong 
 #SBATCH -N 1
 #SBATCH -J offload
-#SBATCH --mail-user=mponce@scinet.utoronto.ca
+#SBATCH --mail-user=YOURemailHERE
 #SBATCH --mail-type=ALL
 
 
@@ -22,7 +22,7 @@ trap "echo 'Job script not completed';exit 129" TERM INT
 
 
 # Note that your initial directory in HPSS will be $ARCHIVE
-ARCHIVE=/archive/s/scinet/mponce
+ARCHIVE=/archive/PATHtoLOCATION/USERSPACE
 #SOURCE=S_1ms1ms_100kms-a
 # read source from command line as an argument passed to sbatch script
 SOURCE=$1

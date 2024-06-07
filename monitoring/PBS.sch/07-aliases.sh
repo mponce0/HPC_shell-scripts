@@ -2,4 +2,4 @@
 
 alias jobcd='source ~/jobcd.sh'
 
-#mponce/feb2015
+#M.Ponce/feb2015

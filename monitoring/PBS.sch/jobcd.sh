@@ -5,7 +5,7 @@
 #
 #  USAGE:  jobcd JOBID||JOBNAME
 #
-# Feb. 2015 --[:mponce]
+# Feb. 2015 --[:M.Ponce]
 
 
 if [[ $# -eq 1 ]]; then

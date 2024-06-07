@@ -10,7 +10,7 @@
 
 # define this variables according to your system and directories you want to sync...
 LOGINnode="gpc-logindm01"
-REMOTEtarget="/scratch2/s/scinet/mponce/spinning"
+REMOTEtarget="/scratch/SYSTEM/USERNAME/spinning"
 LOCALtarget="."
 NBRattempts=100
 

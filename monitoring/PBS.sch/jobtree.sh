@@ -3,7 +3,7 @@
 #
 #  USAGE:  jobtree username 
 #
-# Mar. 2015 --[:mponce]
+# Mar. 2015 --[:M.Ponce]
 
 
 if [[ $# -eq 0 ]]; then
